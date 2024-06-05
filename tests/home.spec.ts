@@ -16,8 +16,19 @@ test.describe('Home', () => {
         // Click on button
         await page.locator('#get-started').click()
 
-        // Verify url
+        // Verify url has #get-started
         await expect(page).toHaveURL(/.*get-started/)
+    })
+
+    test('Locate heading text is visible "Think different." using the text selector', async ({ page }) => {
+        // Open URL
+        await page.goto('https://practice.sdetunicorns.com/');
+
+        // Find the text locator "Think different."
+        const headingText = page.locator('text=Think different.');
+
+        // Verify the heading is there and correct
+        await expect(headingText).toBeVisible();
     })
     
     
