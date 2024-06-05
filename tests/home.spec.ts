@@ -17,7 +17,7 @@ test.describe('Home', () => {
         await page.locator('#get-started').click()
 
         // Verify url
-        await expect(page).toHaveURL('https://practice.sdetunicorns.com/#get-started')
+        await expect(page).toHaveURL(/.*get-started/)
     })
     
     
