@@ -36,7 +36,7 @@ test.describe('Home', () => {
         await page.goto('https://practice.sdetunicorns.com/');
 
         // Find the Home text
-        const homeText = page.locator('#zak-primary-menu >> text=Home');
+        const homeText = page.locator('#zak-primary-menu:has-text("Home")');
 
         // Verify the heading is there and correct
         await expect(homeText).toBeEnabled();
