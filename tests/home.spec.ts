@@ -8,6 +8,17 @@ test.describe('Home', () => {
         // Verify title
         await expect(page).toHaveTitle('Practice E-Commerce Site – SDET Unicorns')
     })
+
+    test('Click on "Get started" using the CSS selector', async ({ page }) => {
+        // Open URL
+        await page.goto('https://practice.sdetunicorns.com/');
+
+        // Click on button
+        await page.locator('#get-started').click()
+
+        // Verify url
+        await expect(page).toHaveURL('https://practice.sdetunicorns.com/#get-started')
+    })
     
     
 })
