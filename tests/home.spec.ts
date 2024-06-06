@@ -96,7 +96,7 @@ test.describe('Contact page', () => {
         await page.locator('#evf-277-field_yhGx3FOwr2-4').fill('Hello, greate job!')
 
         // Submit the form
-        await page.locator('#evf-submit-277').click()
+        await page.locator('button[type=submit]').click()
 
         // Verify confirmation text
          // Find the text locator "Thanks for contacting us! We will be in touch with you shortly"
@@ -120,9 +120,17 @@ test.describe('Blog page', () => {
 
         // Retrieve the number of blog posts
         const numberOfBlogPosts = page.locator('//section[@id="recent-posts-3"] // ul //li')
+        //const titlesOfTheBlogPosts = page.locator('//section[@id="recent-posts-3"] // ul //li//a')
+        //const titles = page.locator('#recent-posts-3').getByRole('link', { name: 'IFrame Sample' })
 
         // Verify the number of posts
         await expect(numberOfBlogPosts).toHaveCount(5);
+
+        // Verify the blog post titles to have more than 10 char
+        for (const el of await numberOfBlogPosts.elementHandles()) {
+        expect(((await el.textContent()).trim()).length).toBeGreaterThan(10)
+      }
+        
     })
 
 })
