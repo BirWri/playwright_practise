@@ -58,6 +58,11 @@ test.describe('Home', () => {
         // Find the Primary nav links
         const navLinks = page.locator('#zak-primary-nav li[id*=menu]');
 
+        // Print out all the nav links
+        for (const element of await navLinks.elementHandles()) {
+            console.log(await element.textContent())   
+        }
+
         // Verify the Nav links
         expect(await navLinks.allTextContents()).toEqual(expectedLinks);
     })
