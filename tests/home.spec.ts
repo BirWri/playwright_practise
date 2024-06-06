@@ -31,15 +31,35 @@ test.describe('Home', () => {
         await expect(headingText).toBeVisible();
     })
     
-    test('Verify home link is enabled using the text and CSS selector', async ({ page }) => {
+    test('Verify search icon is visible using XPath', async ({ page }) => {
         // Open URL
         await page.goto('https://practice.sdetunicorns.com/');
 
-        // Find the Home text
-        const homeText = page.locator('#zak-primary-menu:has-text("Home")');
+        // Find the Search Icon
+        const searchIcon = page.locator('//div[@class="zak-header-actions zak-header-actions--desktop"]//a[@class="zak-header-search__toggle"]');
 
-        // Verify the heading is there and correct
-        await expect(homeText).toBeEnabled();
+        // Verify the Search icon is visible
+        await expect(searchIcon).toBeVisible;
+    })
+
+    test('Verify the text for all primary nav links', async ({ page }) => {
+        const expectedLinks = [
+            "Home", 
+            "About", 
+            "Shop", 
+            "Blog", 
+            "Contact", 
+            "My account",
+        ];
+        
+        // Open URL
+        await page.goto('https://practice.sdetunicorns.com/');
+
+        // Find the Primary nav links
+        const navLinks = page.locator('#zak-primary-nav li[id*=menu]');
+
+        // Verify the Nav links
+        expect(await navLinks.allTextContents()).toEqual(expectedLinks);
     })
     
 })
