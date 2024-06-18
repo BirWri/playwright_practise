@@ -16,7 +16,10 @@ test.describe('Upload a large file on Cart page', () => {
         await page.locator('#upload_1').click();
 
         // hardcoded sleep - not the best way
-        await page.waitForTimeout(5000);
+        //await page.waitForTimeout(5000);
+
+        // wait for condition 
+        await page.locator('#wfu_messageblock_header_1_label_1').waitFor({state:'visible', timeout: 10000})
 
         // Check that the file has been uploaded aka assertion
         const verifyText = page.locator('#wfu_messageblock_header_1_label_1');
