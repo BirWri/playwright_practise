@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { time } from 'console';
 const path = require('path');
 
 test.describe('Upload a large file on Cart page', () => {
@@ -19,12 +20,12 @@ test.describe('Upload a large file on Cart page', () => {
         //await page.waitForTimeout(5000);
 
         // wait for condition 
-        await page.locator('#wfu_messageblock_header_1_label_1').waitFor({state:'visible', timeout: 10000})
+        //await page.locator('#wfu_messageblock_header_1_label_1').waitFor({state:'visible', timeout: 10000})
 
         // Check that the file has been uploaded aka assertion
         const verifyText = page.locator('#wfu_messageblock_header_1_label_1');
         
-        await expect(verifyText).toContainText('uploaded successfully');
+        await expect(verifyText).toContainText('uploaded successfully', {timeout: 10000});
         
     })
     
