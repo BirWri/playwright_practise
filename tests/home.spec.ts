@@ -2,12 +2,14 @@ import { test, expect } from '@playwright/test';
 import HomePage from '../pages/home.page';
 
 test.describe('Home', () => {
-    let homePage;
+    let homePage: HomePage;
+
     test('Open HomePage and verify title', async ({ page }) => {
         homePage = new HomePage(page);
 
         // Open URL
-        await page.goto('https://practice.sdetunicorns.com/');
+        //await page.goto('https://practice.sdetunicorns.com/');
+        await homePage.navigate();
 
         // Verify title
         await expect(page).toHaveTitle('Practice E-Commerce Site – SDET Unicorns')
@@ -16,7 +18,7 @@ test.describe('Home', () => {
     test('Click on "Get started" using the CSS selector', async ({ page }) => {
         homePage = new HomePage(page);
         // Open URL
-        await page.goto('https://practice.sdetunicorns.com/');
+        await homePage.navigate();
 
         await expect(page).not.toHaveURL(/.*get-started/);
 
@@ -31,7 +33,7 @@ test.describe('Home', () => {
     test('Locate heading text is visible "Think different." using the text selector', async ({ page }) => {
         homePage = new HomePage(page);
         // Open URL
-        await page.goto('https://practice.sdetunicorns.com/');
+        await homePage.navigate();
 
         // Find the text locator "Think different."
         //const headingText = page.locator('text=Think different.');
@@ -47,7 +49,7 @@ test.describe('Home', () => {
         homePage = new HomePage(page);
 
         // Open URL
-        await page.goto('https://practice.sdetunicorns.com/');
+        await homePage.navigate();
 
         // Find the Search Icon
         //const searchIcon = page.locator('//div[@class="zak-header-actions zak-header-actions--desktop"]//a[@class="zak-header-search__toggle"]');
@@ -71,19 +73,19 @@ test.describe('Home', () => {
         ];
         
         // Open URL
-        await page.goto('https://practice.sdetunicorns.com/');
+        await homePage.navigate();
 
         // Find the Primary nav links
         //const navLinks = page.locator('#zak-primary-nav li[id*=menu]');
-        const navLinks = await homePage.navLinks
+        //const navLinks = await homePage.navLinks
 
         // Print out all the nav links
-        for (const element of await navLinks.elementHandles()) {
-            console.log(await element.textContent())   
-        }
+        //for (const element of await navLinks.elementHandles()) {
+        //    console.log(await element.textContent())   
+        //}
 
         // Verify the Nav links
-        expect(await navLinks.allTextContents()).toEqual(expectedLinks);
+        expect(await homePage.getNavLinksText()).toEqual(expectedLinks);
     })
     
 })
