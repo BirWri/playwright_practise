@@ -1,17 +1,21 @@
 
 import { test, expect } from '@playwright/test';
-import HomePage from '../pages/home.page';
+import BlogPage from '../pages/blog.page';
 
 test.describe('Blog page', () => {
+    let blogPage: BlogPage;
+
     test('Verify the number of blog posts and the length of the blog post titles to be above 10 char', async ({ page }) => {
-        //Open url
-        await page.goto('https://practice.sdetunicorns.com/')
+      blogPage = new BlogPage(page);
+
+      //Open url
+        await blogPage.navigate();
 
         // Click on Blog
-        await page.locator('#menu-item-490').click()
+        await blogPage.menuBlogButton.click()
 
         // Retrieve the number of blog posts
-        const numberOfBlogPosts = page.locator('//section[@id="recent-posts-3"] // ul //li')
+        const numberOfBlogPosts = await blogPage.numberOfBlogPosts
         //const titlesOfTheBlogPosts = page.locator('//section[@id="recent-posts-3"] // ul //li//a')
         //const titles = page.locator('#recent-posts-3').getByRole('link', { name: 'IFrame Sample' })
 
