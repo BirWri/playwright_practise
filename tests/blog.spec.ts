@@ -11,11 +11,6 @@ test.describe('Blog page', () => {
       //Open url
         await blogPage.navigate();
 
-        // Retrieve the number of blog posts
-        //const numberOfBlogPosts = await blogPage.numberOfBlogPosts
-        //const titlesOfTheBlogPosts = page.locator('//section[@id="recent-posts-3"] // ul //li//a')
-        //const titles = page.locator('#recent-posts-3').getByRole('link', { name: 'IFrame Sample' })
-
         // Verify the number of posts
         await expect(blogPage.numberOfBlogPosts).toHaveCount(5);
 
