@@ -29,9 +29,8 @@ class ContactPage {
         await this.contactEmail.fill(email)
         await this.contactMobile.fill(mobile)
         await this.contactInputText.fill(inputText)
+        await this.SubmitButton.click()
     }
-
-    
 
 }
 

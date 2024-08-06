@@ -16,7 +16,7 @@ test.describe('Blog page', () => {
 
         // Verify the blog post titles to have more than 10 char
         for (const el of await blogPage.numberOfBlogPosts.elementHandles()) {
-        expect(((await el.textContent()).trim()).length).toBeGreaterThan(10)
+        expect(((await el.textContent())!.trim()).length).toBeGreaterThan(10)
       }
         
     })
