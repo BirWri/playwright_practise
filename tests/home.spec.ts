@@ -8,7 +8,7 @@ test.describe('Home', () => {
         homePage = new HomePage(page);
 
         // Open URL
-        //await page.goto('https://practice.sdetunicorns.com/');
+        //await page.goto('https://practice.sdetunicorns.com');
         await homePage.navigate();
 
         // Verify title
