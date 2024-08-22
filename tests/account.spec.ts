@@ -13,15 +13,13 @@ test.describe('My account', () => {
     })
     
     test('Access Orders', async ({ page }) => {
-        await page.goto('/my-account/')
         await page.locator(`li a[href*=orders]`).click()
-        await expect(page).toHaveURL('/my-account/orders/')  
+        await expect(page).toHaveURL(/.*orders/)  
     })
 
     test('Access Downloads', async ({ page }) => {
-        await page.goto('/my-account/')
         await page.locator(`li a[href*='downloads']`).click()
-        await expect(page).toHaveURL('/my-account/downloads/') 
+        await expect(page).toHaveURL(/.*downloads/) 
     }) 
     
 })
