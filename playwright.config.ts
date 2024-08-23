@@ -24,7 +24,7 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [['allure-playwright'], ['line']],
   /*place for the script for the signed-in state*/
   globalSetup: require.resolve('./utils/global-setup'),
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */  
@@ -48,20 +48,20 @@ export default defineConfig({
   
     },
 
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'],
-        headless: false
-       },
+    //{
+    //  name: 'firefox',
+    //  use: { ...devices['Desktop Firefox'],
+    //    headless: false
+    //   },
   
-    },
+    //},
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'],
-        headless: false
-       },
-    },
+    //{
+    //  name: 'webkit',
+    //  use: { ...devices['Desktop Safari'],
+    //    headless: false
+    //   },
+    //},
 
     /* Test against mobile viewports. */
     // {
