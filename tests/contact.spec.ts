@@ -3,7 +3,7 @@ import ContactPage from '../pages/contacts.page';
 import { faker } from '@faker-js/faker';
 
 
-test.describe('Contact page', () => {
+test.describe.only('Contact page', () => {
     let contactPage : ContactPage;
 
     test.beforeEach(async ({ page }) => {
