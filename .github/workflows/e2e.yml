@@ -14,6 +14,8 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run your tests
         run: npx playwright test tests/home.spec.ts
+        #Test results part is not generating/passing correct json file for allure report.
+        #Needs to be fixed and  a deeper investigation why
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v4
