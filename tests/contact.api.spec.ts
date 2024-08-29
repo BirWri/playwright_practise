@@ -16,6 +16,16 @@ test.describe('Contact page', () => {
         const response = await fakerAPI.get('users');
         const responseBody = (await response.json());
         randomPerson = responseBody[0];
+
+        const postResponse = await fakerAPI.post('users/1/todos', {
+            data: {
+                "title": "Learned Playwright",
+                "completed": "false"
+            }
+        });
+
+        const postResponseBody = await postResponse.json()
+        console.log(postResponseBody)
     })
     
 
