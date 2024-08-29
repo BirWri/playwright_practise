@@ -1,31 +1,18 @@
 import { test, expect, APIRequestContext, APIResponse } from '@playwright/test';
 import ContactPage from '../pages/contacts.page';
+import apiController from '../controller/api.controller';
 
 
 
 test.describe('Contact page', () => {
     let contactPage : ContactPage;
-    let fakerAPI: APIRequestContext;
     let randomPerson : APIResponse;
 
-    test.beforeAll(async ({ playwright }) => {
-        fakerAPI = await playwright.request.newContext({
-            baseURL: 'https://jsonplaceholder.typicode.com/'
-        });
-        
-        const response = await fakerAPI.get('users');
-        const responseBody = (await response.json());
-        randomPerson = responseBody[0];
-
-        const postResponse = await fakerAPI.post('users/1/todos', {
-            data: {
-                "title": "Learned Playwright",
-                "completed": "false"
-            }
-        });
-
-        const postResponseBody = await postResponse.json()
-        console.log(postResponseBody)
+    test.beforeAll(async () => {
+        await apiController.init();
+        randomPerson = await apiController.getUsers();
+        const newUserToDo = await apiController.createUserToDo({'title':'Hello', 'completed':'false'})
+        console.log(newUserToDo)   
     })
     
 
